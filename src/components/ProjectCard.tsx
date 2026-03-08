@@ -27,7 +27,7 @@ export function ProjectCard({
           <img
             src={image}
             alt={title}
-            className=" h-[70%]  object-contain border rounded-full "
+            className=" h-48 w-60  object-contain  "
           />
         ) : (
           <Icon className="h-24 w-24 text-white" />

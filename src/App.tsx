@@ -27,8 +27,9 @@ import {
 import { FaAws, FaWhatsapp } from "react-icons/fa6";
 import { useState } from "react";
 import logo from "./assets/logo.webp";
-// import memdalet from "./assets/mendalet.webp"; // Currently not used
-import xxlLogo from "./assets/xxl_logo.webp";
+import noBGlogo from "./assets/logo_no_bg.png";
+import xxlLogo from "./assets/xxl_logo.png";
+import rekezetLogo from "./assets/icons/rekezet.svg";
 import accelerateIcon from "./assets/icons/accelerate-svgrepo-com.svg";
 import computerIcon from "./assets/icons/computer-svgrepo-com.svg";
 import cellPhoneIcon from "./assets/icons/cell-phone-svgrepo-com.svg";
@@ -70,17 +71,25 @@ function App() {
       icon: Code,
       title: "Memdalet Prints",
       description:
-        "E-commerce platform for custom merchandise, featuring a user-friendly interface and secure payment processing.",
+        "Complex e-commerce platform featuring a custom print order flow integration, real-time order tracking, direct branch chat functionality, and a comprehensive admin panel with extensive configurations.",
       tags: ["Next.js", "Node.js", "MongoDB", "Tailwind CSS"],
       image: xxlLogo,
       url: "https://www.memdalet.co.il/",
     },
     {
       icon: Shield,
-      title: "Security Suite",
+      title: "Rekezet Edu-App",
       description:
-        "Comprehensive security monitoring and threat detection system.",
-      tags: ["Python", "Docker", "Kubernetes"],
+        "An advanced educational platform built with modern technologies, featuring an AI RAG (Retrieval-Augmented Generation) system and intelligent AI agents to handle events.",
+      image: rekezetLogo,
+      tags: [
+        "Node.js",
+        "React",
+        "Flutter",
+        "Langchain",
+        "PostgreSQL",
+        "Docker",
+      ],
     },
   ];
 
@@ -95,11 +104,11 @@ function App() {
     { icon: SiMongodb, name: "MongoDB", color: "text-[#47A248]" },
     { icon: SiPostgresql, name: "PostgreSQL", color: "text-[#4169E1]" },
     { icon: SiNodedotjs, name: "Node.js", color: "text-[#339933]" },
-    { icon: SiPhp, name: "PHP", color: "text-[#777BB4]" },
+    { icon: SiPhp, name: "", color: "text-[#777BB4]" },
     { icon: SiFlutter, name: "Flutter", color: "text-[#02569B]" },
     { icon: SiReact, name: "React / Native", color: "text-[#61DAFB]" },
     { icon: SiNextdotjs, name: "Next.js", color: "text-black" },
-    { icon: FaAws, name: "AWS", color: "text-[#232F3E]" },
+    { icon: FaAws, name: "", color: "text-[#232F3E]" },
     { icon: SiSupabase, name: "Supabase", color: "text-[#232F3E]" },
     { icon: SiDigitalocean, name: "DigitalOcean", color: "text-[#0080FF]" },
     { icon: SiFirebase, name: "Firebase", color: "text-[#FFCA28]" },
@@ -212,8 +221,8 @@ function App() {
       </section>
 
       {/* Tech Stack Marquee */}
-      <div className="w-full bg-white border-y-4 border-b-secondary overflow-hidden py-6">
-        <div className="flex whitespace-nowrap animate-marquee">
+      <div className="w-full bg-white border-b-4 border-b-secondary overflow-hidden py-6">
+        <div className="flex whitespace-nowrap animate-marquee-mobile md:animate-marquee">
           {/* We render the tech stack text and icons twice for seamless looping */}
           {[...Array(2)].map((_, i) => (
             <div
@@ -358,7 +367,8 @@ function App() {
           <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div>
               <div className="flex items-center mb-4">
-                <Code className="h-8 w-8 text-secondary" />
+                {/* <img src={noBGlogo} alt="App Logo" className="h-8 w-auto" /> */}
+                {/* <Code className="h-8 w-8 text-secondary" /> */}
                 <span className="ml-2 text-xl font-bold">DBS softwares</span>
               </div>
               <p className="text-gray-300">

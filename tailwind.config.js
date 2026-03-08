@@ -9,6 +9,7 @@ export default {
       },
       animation: {
         marquee: "marquee 25s linear infinite",
+        "marquee-mobile": "marquee 10s linear infinite",
       },
       keyframes: {
         marquee: {
