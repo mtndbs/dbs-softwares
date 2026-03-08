@@ -176,10 +176,10 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
                 Building Software Solutions for Tomorrow
               </h1>
-              <p className="text-xl text-gray-200 mb-8 leading-relaxed">
+              <p className="text-lg md:text-xl text-gray-200 mb-8 leading-relaxed">
                 We craft cutting-edge applications that transform your ideas
                 into powerful, scalable software solutions.
               </p>
@@ -252,7 +252,11 @@ function App() {
                   key={index}
                   className="bg-white border-4 border-primary p-8 hover:border-secondary transition-colors group flex flex-col"
                 >
-                  <img src={service.icon} alt={service.title} className="h-16 w-16 mb-6 transition-transform group-hover:scale-110" />
+                  <img
+                    src={service.icon}
+                    alt={service.title}
+                    className="h-16 w-16 mb-6 transition-transform group-hover:scale-110"
+                  />
                   <h3 className="text-2xl font-bold text-primary mb-4">
                     {service.title}
                   </h3>
