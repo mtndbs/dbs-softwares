@@ -212,7 +212,7 @@ function App() {
               <img
                 src={logo}
                 alt="App Logo"
-                className="w-full md:max-w-none md:w-auto mx-auto border border-r-secondary border-r-8 object-contain"
+                className="w-full  md:w-auto mx-auto border border-r-secondary border-r-8 object-contain"
               />
               {/* </div> */}
             </div>
