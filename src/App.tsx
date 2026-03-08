@@ -207,12 +207,12 @@ function App() {
                 </button>
               </div>
             </div>
-            <div className="relative">
+            <div className="relative -mx-4 sm:mx-0">
               {/* <div className="bg-secondary p-8 border-4 border-white"> */}
               <img
                 src={logo}
                 alt="App Logo"
-                className=" w-auto mx-auto   border-r-secondary border-r-8 object-contain"
+                className="w-full md:max-w-none md:w-auto mx-auto border border-r-secondary border-r-8 object-contain"
               />
               {/* </div> */}
             </div>
