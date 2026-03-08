@@ -24,7 +24,7 @@ import {
   SiLangchain,
   SiPytorch,
 } from "react-icons/si";
-import { FaAws } from "react-icons/fa6";
+import { FaAws, FaWhatsapp } from "react-icons/fa6";
 import { useState } from "react";
 import logo from "./assets/logo.webp";
 // import memdalet from "./assets/mendalet.webp"; // Currently not used
@@ -331,12 +331,23 @@ function App() {
                 ></textarea>
               </div>
 
-              <button
-                type="submit"
-                className="w-full px-8 py-4 bg-secondary text-white font-bold hover:bg-opacity-90 transition-all border-2 border-secondary"
-              >
-                Send Message
-              </button>
+              <div className="flex flex-col sm:flex-row gap-4 pt-2">
+                <button
+                  type="submit"
+                  className="w-full sm:w-1/2 px-8 py-4 bg-secondary text-white font-bold hover:bg-opacity-90 transition-all border-2 border-secondary"
+                >
+                  Send Message
+                </button>
+                <a
+                  href="https://wa.me/972585875652"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-1/2 flex items-center justify-center gap-3 px-8 py-4 bg-[#25D366] text-white font-bold hover:bg-[#20bd5a] transition-all border-2 border-[#25D366]"
+                >
+                  <FaWhatsapp className="text-2xl" />
+                  WhatsApp Us
+                </a>
+              </div>
             </form>
           </div>
         </div>
