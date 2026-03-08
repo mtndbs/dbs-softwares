@@ -2,9 +2,7 @@ import {
   LuMenu as Menu,
   LuX as X,
   LuCode as Code,
-  LuZap as Zap,
   LuShield as Shield,
-  LuUsers as Users,
   LuMail as Mail,
   LuGithub as Github,
   LuLinkedin as Linkedin,
@@ -31,6 +29,9 @@ import { useState } from "react";
 import logo from "./assets/logo.webp";
 // import memdalet from "./assets/mendalet.webp"; // Currently not used
 import xxlLogo from "./assets/xxl_logo.webp";
+import accelerateIcon from "./assets/icons/accelerate-svgrepo-com.svg";
+import computerIcon from "./assets/icons/computer-svgrepo-com.svg";
+import cellPhoneIcon from "./assets/icons/cell-phone-svgrepo-com.svg";
 import { ProjectCard } from "./components/ProjectCard";
 
 function App() {
@@ -45,22 +46,22 @@ function App() {
 
   const services = [
     {
-      icon: Zap,
-      title: "Custom Development",
+      icon: computerIcon,
+      title: "Web & Desktop Apps",
       description:
-        "Tailored software solutions designed to meet your specific business needs and objectives.",
+        "Tailored web and desktop applications designed to meet your specific business needs with cutting-edge technologies.",
     },
     {
-      icon: Shield,
-      title: "Security First",
+      icon: cellPhoneIcon,
+      title: "Mobile Development",
       description:
-        "Enterprise-grade security measures to protect your data and ensure compliance with industry standards.",
+        "Seamless, responsive, and intuitive mobile solutions for iOS and Android platforms to engage your users on the go.",
     },
     {
-      icon: Users,
-      title: "Team Collaboration",
+      icon: accelerateIcon,
+      title: "Performance & Growth",
       description:
-        "Seamless integration with your team to deliver projects on time and within budget.",
+        "Accelerate your business with lightning-fast applications, optimized architecture, and scalable infrastructure.",
     },
   ];
 
@@ -246,13 +247,12 @@ function App() {
 
           <div className="grid md:grid-cols-3 gap-8">
             {services.map((service, index) => {
-              const Icon = service.icon;
               return (
                 <div
                   key={index}
-                  className="bg-white border-4 border-primary p-8 hover:border-secondary transition-colors"
+                  className="bg-white border-4 border-primary p-8 hover:border-secondary transition-colors group flex flex-col"
                 >
-                  <Icon className="h-12 w-12 text-secondary mb-4" />
+                  <img src={service.icon} alt={service.title} className="h-16 w-16 mb-6 transition-transform group-hover:scale-110" />
                   <h3 className="text-2xl font-bold text-primary mb-4">
                     {service.title}
                   </h3>
