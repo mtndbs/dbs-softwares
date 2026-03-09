@@ -1,5 +1,4 @@
 import { LuMenu as Menu, LuX as X } from "react-icons/lu";
-
 import { FaWhatsapp } from "react-icons/fa6";
 import { useState } from "react";
 import logo from "./assets/logo.webp";
