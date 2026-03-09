@@ -77,13 +77,11 @@ function App() {
         setMobileMenuOpen={setMobileMenuOpen}
         scrollToSection={scrollToSection}
       />
-      <section
-        id="home"
-        className="pt-16 min-h-screen flex items-center bg-primary"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
+      <section id="home" className=" md:h-[60dvh] flex  bg-primary">
+        {/* <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border"> */}
+        <div className="">
+          <div className="grid md:grid-cols-2 gap-12 items-center  md:h-[60dvh]   ">
+            <div className="px-8 py-20">
               <AppTitle
                 as="h1"
                 className="text-4xl md:text-6xl text-white mb-6 leading-tight"
@@ -106,11 +104,11 @@ function App() {
                 </AppButton>
               </div>
             </div>
-            <div className="relative -mx-4 sm:mx-0">
+            <div className="flex flex-col justify-center items-center h-full border-t-8 border-t-secondary md:border-l-8 md:border-l-secondary  bg-white">
               <img
                 src={logo}
                 alt="App Logo"
-                className="w-full  md:w-auto mx-auto border border-r-secondary border-r-8 object-contain"
+                className="w-full  md:w-auto mx-auto  object-contain"
               />
             </div>
           </div>
