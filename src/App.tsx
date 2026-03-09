@@ -1,4 +1,3 @@
-import { LuMenu as Menu, LuX as X } from "react-icons/lu";
 import { FaWhatsapp } from "react-icons/fa6";
 import { useState } from "react";
 import logo from "./assets/logo.webp";
@@ -15,6 +14,7 @@ import {
   socialLinks,
   techStack,
 } from "./data/lists";
+import Header from "./layouts/Header";
 
 type FormInputs = {
   name: string;
@@ -39,7 +39,14 @@ function App() {
   const onSubmit: SubmitHandler<FormInputs> = async (data) => {
     setIsSubmitting(true);
     try {
-      const response = await fetch("https://formspree.io/f/mreyelna", {
+      // Use import.meta.env.FORMSPREE, configured in vite.config.ts
+      const formEndpoint = import.meta.env.FORMSPREE;
+
+      if (!formEndpoint) {
+        throw new Error("Formspree endpoint is not configured.");
+      }
+
+      const response = await fetch(formEndpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -69,63 +76,11 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white">
-      <nav className="fixed w-full bg-primary z-50 border-b-4 border-secondary">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              {/* <img src={logo} alt="App Logo" className="h-8 w-auto" /> */}
-              <span className="ml-2 text-xl font-bold text-white">
-                DBS softwares
-              </span>
-            </div>
-
-            <div className="hidden md:flex space-x-8">
-              {navLinks.map((link) => (
-                <AppButton
-                  key={link.id}
-                  onClick={() => scrollToSection(link.id)}
-                  variant="nav"
-                  size="none"
-                >
-                  {link.label}
-                </AppButton>
-              ))}
-            </div>
-
-            <AppButton
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              variant="ghost"
-              size="none"
-              className="md:hidden text-white"
-            >
-              {mobileMenuOpen ? (
-                <X className="h-6 w-6" />
-              ) : (
-                <Menu className="h-6 w-6" />
-              )}
-            </AppButton>
-          </div>
-        </div>
-
-        {mobileMenuOpen && (
-          <div className="md:hidden bg-primary border-t border-secondary">
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              {navLinks.map((link) => (
-                <AppButton
-                  key={link.id}
-                  onClick={() => scrollToSection(link.id)}
-                  variant="ghost"
-                  size="none"
-                  className="block w-full text-left px-3 py-2 text-white hover:bg-secondary"
-                >
-                  {link.label}
-                </AppButton>
-              ))}
-            </div>
-          </div>
-        )}
-      </nav>
-
+      <Header
+        mobileMenuOpen={mobileMenuOpen}
+        setMobileMenuOpen={setMobileMenuOpen}
+        scrollToSection={scrollToSection}
+      />
       <section
         id="home"
         className="pt-16 min-h-screen flex items-center bg-primary"
@@ -163,10 +118,8 @@ function App() {
         </div>
       </section>
 
-      {/* Tech Stack Marquee */}
       <div className="w-full bg-white border-b-4 border-b-secondary overflow-hidden py-6">
         <div className="flex whitespace-nowrap animate-marquee-mobile md:animate-marquee">
-          {/* We render the tech stack text and icons twice for seamless looping */}
           {[...Array(2)].map((_, i) => (
             <div
               key={i}
