@@ -81,10 +81,10 @@ function App() {
         {/* <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border"> */}
         <div className="">
           <div className="grid md:grid-cols-2 gap-12 items-center  md:h-[60dvh]   ">
-            <div className="px-8 py-20">
+            <div className="md:px-20 px-8 py-24 ">
               <AppTitle
                 as="h1"
-                className="text-4xl md:text-6xl text-white mb-6 leading-tight"
+                className="text-4xl md:text-4xl xl:text-6xl text-white mb-6 leading-tight"
               >
                 Building Software Solutions for Tomorrow
               </AppTitle>
