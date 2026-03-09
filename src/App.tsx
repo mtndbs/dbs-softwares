@@ -1,40 +1,21 @@
-import {
-  LuMenu as Menu,
-  LuX as X,
-  LuCode as Code,
-  LuShield as Shield,
-  LuMail as Mail,
-  LuGithub as Github,
-  LuLinkedin as Linkedin,
-  LuTwitter as Twitter,
-} from "react-icons/lu";
-import {
-  SiMongodb,
-  SiPostgresql,
-  SiNodedotjs,
-  SiPhp,
-  SiFlutter,
-  SiReact,
-  SiGooglecloud,
-  SiFirebase,
-  SiNextdotjs,
-  SiDigitalocean,
-  SiDocker,
-  SiSupabase,
-  SiLangchain,
-  SiPytorch,
-} from "react-icons/si";
-import { FaAws, FaWhatsapp } from "react-icons/fa6";
+import { LuMenu as Menu, LuX as X } from "react-icons/lu";
+
+import { FaWhatsapp } from "react-icons/fa6";
 import { useState } from "react";
 import logo from "./assets/logo.webp";
-import noBGlogo from "./assets/logo_no_bg.png";
-import xxlLogo from "./assets/xxl_logo.png";
-import rekezetLogo from "./assets/icons/rekezet.svg";
-import accelerateIcon from "./assets/icons/accelerate-svgrepo-com.svg";
-import computerIcon from "./assets/icons/computer-svgrepo-com.svg";
-import cellPhoneIcon from "./assets/icons/cell-phone-svgrepo-com.svg";
 import { ProjectCard } from "./components/ProjectCard";
+import { AppButton } from "./components/AppButton";
+import { SectionHeader } from "./components/SectionHeader";
+import { AppInput } from "./components/AppInput";
+import { AppTextarea } from "./components/AppTextarea";
 import { useForm, SubmitHandler } from "react-hook-form";
+import {
+  navLinks,
+  projects,
+  services,
+  socialLinks,
+  techStack,
+} from "./data/lists";
 
 type FormInputs = {
   name: string;
@@ -81,86 +62,6 @@ function App() {
     }
   };
 
-  const navLinks = [
-    { id: "home", label: "Home" },
-    { id: "services", label: "Services" },
-    { id: "projects", label: "Projects" },
-    { id: "contact", label: "Contact" },
-  ];
-
-  const services = [
-    {
-      icon: computerIcon,
-      title: "Web & Desktop Apps",
-      description:
-        "Tailored web and desktop applications designed to meet your specific business needs with cutting-edge technologies.",
-    },
-    {
-      icon: cellPhoneIcon,
-      title: "Mobile Development",
-      description:
-        "Seamless, responsive, and intuitive mobile solutions for iOS and Android platforms to engage your users on the go.",
-    },
-    {
-      icon: accelerateIcon,
-      title: "Performance & Growth",
-      description:
-        "Accelerate your business with lightning-fast applications, optimized architecture, and scalable infrastructure.",
-    },
-  ];
-
-  const projects = [
-    {
-      icon: Code,
-      title: "Memdalet Prints",
-      description:
-        "Complex e-commerce platform featuring a custom print order flow integration, real-time order tracking, direct branch chat functionality, and a comprehensive admin panel with extensive configurations.",
-      tags: ["Next.js", "Node.js", "MongoDB", "Tailwind CSS"],
-      image: xxlLogo,
-      url: "https://www.memdalet.co.il/",
-    },
-    {
-      icon: Shield,
-      title: "Rekezet Edu-App",
-      description:
-        "An advanced educational platform built with modern technologies, featuring an AI RAG (Retrieval-Augmented Generation) system and intelligent AI agents to handle events.",
-      image: rekezetLogo,
-      tags: [
-        "Node.js",
-        "React",
-        "Flutter",
-        "Langchain",
-        "PostgreSQL",
-        "Docker",
-      ],
-    },
-  ];
-
-  const socialLinks = [
-    { icon: Github, href: "#" },
-    { icon: Linkedin, href: "#" },
-    { icon: Twitter, href: "#" },
-    { icon: Mail, href: "#" },
-  ];
-
-  const techStack = [
-    { icon: SiMongodb, name: "MongoDB", color: "text-[#47A248]" },
-    { icon: SiPostgresql, name: "PostgreSQL", color: "text-[#4169E1]" },
-    { icon: SiNodedotjs, name: "Node.js", color: "text-[#339933]" },
-    { icon: SiPhp, name: "", color: "text-[#777BB4]" },
-    { icon: SiFlutter, name: "Flutter", color: "text-[#02569B]" },
-    { icon: SiReact, name: "React / Native", color: "text-[#61DAFB]" },
-    { icon: SiNextdotjs, name: "Next.js", color: "text-black" },
-    { icon: FaAws, name: "", color: "text-[#232F3E]" },
-    { icon: SiSupabase, name: "Supabase", color: "text-[#232F3E]" },
-    { icon: SiDigitalocean, name: "DigitalOcean", color: "text-[#0080FF]" },
-    { icon: SiFirebase, name: "Firebase", color: "text-[#FFCA28]" },
-    { icon: SiGooglecloud, name: "Google Cloud", color: "text-[#0080FF]" },
-    { icon: SiDocker, name: "Docker", color: "text-[#2496ED]" },
-    { icon: SiLangchain, name: "Langchain", color: "text-[#FF5733]" },
-    { icon: SiPytorch, name: "PyTorch", color: "text-[#EE4C2C]" },
-  ];
-
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     element?.scrollIntoView({ behavior: "smooth" });
@@ -181,18 +82,21 @@ function App() {
 
             <div className="hidden md:flex space-x-8">
               {navLinks.map((link) => (
-                <button
+                <AppButton
                   key={link.id}
                   onClick={() => scrollToSection(link.id)}
-                  className="text-white hover:text-secondary transition-colors"
+                  variant="nav"
+                  size="none"
                 >
                   {link.label}
-                </button>
+                </AppButton>
               ))}
             </div>
 
-            <button
+            <AppButton
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              variant="ghost"
+              size="none"
               className="md:hidden text-white"
             >
               {mobileMenuOpen ? (
@@ -200,7 +104,7 @@ function App() {
               ) : (
                 <Menu className="h-6 w-6" />
               )}
-            </button>
+            </AppButton>
           </div>
         </div>
 
@@ -208,13 +112,15 @@ function App() {
           <div className="md:hidden bg-primary border-t border-secondary">
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navLinks.map((link) => (
-                <button
+                <AppButton
                   key={link.id}
                   onClick={() => scrollToSection(link.id)}
+                  variant="ghost"
+                  size="none"
                   className="block w-full text-left px-3 py-2 text-white hover:bg-secondary"
                 >
                   {link.label}
-                </button>
+                </AppButton>
               ))}
             </div>
           </div>
@@ -236,28 +142,23 @@ function App() {
                 into powerful, scalable software solutions.
               </p>
               <div className="flex flex-wrap gap-4">
-                <button
-                  onClick={() => scrollToSection("contact")}
-                  className="px-8 py-3 bg-secondary text-white font-semibold hover:bg-opacity-90 transition-all border-2 border-secondary"
-                >
+                <AppButton onClick={() => scrollToSection("contact")}>
                   Get Started
-                </button>
-                <button
+                </AppButton>
+                <AppButton
+                  variant="outline"
                   onClick={() => scrollToSection("projects")}
-                  className="px-8 py-3 bg-transparent text-white font-semibold border-2 border-white hover:bg-white hover:text-primary transition-all"
                 >
                   View Projects
-                </button>
+                </AppButton>
               </div>
             </div>
             <div className="relative -mx-4 sm:mx-0">
-              {/* <div className="bg-secondary p-8 border-4 border-white"> */}
               <img
                 src={logo}
                 alt="App Logo"
                 className="w-full  md:w-auto mx-auto border border-r-secondary border-r-8 object-contain"
               />
-              {/* </div> */}
             </div>
           </div>
         </div>
@@ -290,12 +191,7 @@ function App() {
 
       <section id="services" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-primary mb-4">
-              Our Services
-            </h2>
-            <div className="w-24 h-1 bg-secondary mx-auto"></div>
-          </div>
+          <SectionHeader title="Our Services" />
 
           <div className="grid md:grid-cols-3 gap-8">
             {services.map((service, index) => {
@@ -324,12 +220,7 @@ function App() {
 
       <section id="projects" className="py-20 bg-primary">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-4">
-              Featured Projects
-            </h2>
-            <div className="w-24 h-1 bg-secondary mx-auto"></div>
-          </div>
+          <SectionHeader title="Featured Projects" textColor="text-white" />
 
           <div className="grid md:grid-cols-2 gap-8">
             {projects.map((project, index) => (
@@ -341,91 +232,48 @@ function App() {
 
       <section id="contact" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-primary mb-4">
-              Get In Touch
-            </h2>
-            <div className="w-24 h-1 bg-secondary mx-auto"></div>
-          </div>
+          <SectionHeader title="Get In Touch" />
 
           <div className="max-w-2xl mx-auto">
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              action="https://formspree.io/f/mreyelna"
-              method="POST"
-              className="space-y-6"
-            >
-              <div>
-                <label className="block text-primary font-semibold mb-2">
-                  Name
-                </label>
-                <input
-                  {...register("name", { required: "Name is required" })}
-                  type="text"
-                  className={`w-full px-4 py-3 border-2 ${
-                    errors.name ? "border-red-500" : "border-primary"
-                  } focus:border-secondary outline-none`}
-                  placeholder="Your name"
-                />
-                {errors.name && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.name.message}
-                  </p>
-                )}
-              </div>
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+              <AppInput
+                label="Name"
+                placeholder="Your name"
+                {...register("name", { required: "Name is required" })}
+                error={errors.name}
+              />
 
-              <div>
-                <label className="block text-primary font-semibold mb-2">
-                  Email
-                </label>
-                <input
-                  {...register("email", {
-                    required: "Email is required",
-                    pattern: {
-                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                      message: "Invalid email address",
-                    },
-                  })}
-                  type="email"
-                  className={`w-full px-4 py-3 border-2 ${
-                    errors.email ? "border-red-500" : "border-primary"
-                  } focus:border-secondary outline-none`}
-                  placeholder="your@email.com"
-                />
-                {errors.email && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.email.message}
-                  </p>
-                )}
-              </div>
+              <AppInput
+                label="Email"
+                placeholder="your@email.com"
+                type="email"
+                {...register("email", {
+                  required: "Email is required",
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                    message: "Invalid email address",
+                  },
+                })}
+                error={errors.email}
+              />
 
-              <div>
-                <label className="block text-primary font-semibold mb-2">
-                  Message
-                </label>
-                <textarea
-                  {...register("message", { required: "Message is required" })}
-                  rows={6}
-                  className={`w-full px-4 py-3 border-2 ${
-                    errors.message ? "border-red-500" : "border-primary"
-                  } focus:border-secondary outline-none resize-none`}
-                  placeholder="Tell us about your project..."
-                ></textarea>
-                {errors.message && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.message.message}
-                  </p>
-                )}
-              </div>
+              <AppTextarea
+                label="Message"
+                placeholder="Tell us about your project..."
+                rows={6}
+                {...register("message", { required: "Message is required" })}
+                error={errors.message}
+              />
 
               <div className="flex flex-col sm:flex-row gap-4 pt-2">
-                <button
+                <AppButton
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full sm:w-1/2 px-8 py-4 bg-secondary text-white font-bold hover:bg-opacity-90 transition-all border-2 border-secondary disabled:opacity-50 disabled:cursor-not-allowed"
+                  size="lg"
+                  className="w-full sm:w-1/2"
                 >
                   {isSubmitting ? "Sending..." : "Send Message"}
-                </button>
+                </AppButton>
                 <a
                   href="https://wa.me/972585875652"
                   target="_blank"
@@ -457,8 +305,6 @@ function App() {
           <div className="grid md:grid-cols-3 gap-8 mb-8">
             <div>
               <div className="flex items-center mb-4">
-                {/* <img src={noBGlogo} alt="App Logo" className="h-8 w-auto" /> */}
-                {/* <Code className="h-8 w-8 text-secondary" /> */}
                 <span className="ml-2 text-xl font-bold">DBS softwares</span>
               </div>
               <p className="text-gray-300">
@@ -472,13 +318,15 @@ function App() {
                 {navLinks
                   .filter((link) => link.id !== "home")
                   .map((link) => (
-                    <button
+                    <AppButton
                       key={link.id}
                       onClick={() => scrollToSection(link.id)}
+                      variant="ghost"
+                      size="none"
                       className="block text-gray-300 hover:text-secondary"
                     >
                       {link.label}
-                    </button>
+                    </AppButton>
                   ))}
               </div>
             </div>

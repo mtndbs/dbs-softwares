@@ -1,10 +1,7 @@
-import { IconType } from "react-icons";
-
 interface ProjectCardProps {
   title: string;
   description: string;
   tags: string[];
-  icon: IconType;
   image?: string;
   url?: string;
 }
@@ -13,7 +10,6 @@ export function ProjectCard({
   title,
   description,
   tags,
-  icon: Icon,
   image,
   url,
 }: ProjectCardProps) {
@@ -30,7 +26,7 @@ export function ProjectCard({
             className=" h-48 w-60  object-contain  "
           />
         ) : (
-          <Icon className="h-24 w-24 text-white" />
+          <div className="text-white text-3xl font-bold">{title[0]}</div>
         )}
       </div>
       <div className="p-6 flex-grow flex flex-col">
