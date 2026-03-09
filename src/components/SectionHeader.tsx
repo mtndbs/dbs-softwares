@@ -1,4 +1,5 @@
 import React from "react";
+import { AppTitle } from "./AppTitle";
 
 interface SectionHeaderProps {
   title: string;
@@ -12,7 +13,9 @@ export function SectionHeader({
 }: SectionHeaderProps) {
   return (
     <div className="text-center mb-16">
-      <h2 className={`text-4xl font-bold ${textColor} mb-4`}>{title}</h2>
+      <AppTitle as="h2" className={`text-4xl ${textColor} mb-4`}>
+        {title}
+      </AppTitle>
       <div className="w-24 h-1 bg-secondary mx-auto"></div>
     </div>
   );

@@ -1,3 +1,5 @@
+import { AppTitle } from "./AppTitle";
+
 interface ProjectCardProps {
   title: string;
   description: string;
@@ -30,7 +32,9 @@ export function ProjectCard({
         )}
       </div>
       <div className="p-6 flex-grow flex flex-col">
-        <h3 className="text-2xl font-bold text-primary mb-3">{title}</h3>
+        <AppTitle as="h3" className="text-2xl text-primary mb-3">
+          {title}
+        </AppTitle>
         <p className="text-gray-700 mb-4 flex-grow">{description}</p>
         <div className="flex flex-wrap gap-2 mt-auto">
           {tags.map((tag, tagIndex) => (

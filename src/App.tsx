@@ -6,6 +6,7 @@ import { AppButton } from "./components/AppButton";
 import { SectionHeader } from "./components/SectionHeader";
 import { AppInput } from "./components/AppInput";
 import { AppTextarea } from "./components/AppTextarea";
+import { AppTitle } from "./components/AppTitle";
 import { useForm, SubmitHandler } from "react-hook-form";
 import {
   navLinks,
@@ -88,9 +89,12 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+              <AppTitle
+                as="h1"
+                className="text-4xl md:text-6xl text-white mb-6 leading-tight"
+              >
                 Building Software Solutions for Tomorrow
-              </h1>
+              </AppTitle>
               <p className="text-lg md:text-xl text-gray-200 mb-8 leading-relaxed">
                 We craft cutting-edge applications that transform your ideas
                 into powerful, scalable software solutions.
@@ -157,9 +161,9 @@ function App() {
                     alt={service.title}
                     className="h-16 w-16 mb-6 transition-transform group-hover:scale-110"
                   />
-                  <h3 className="text-2xl font-bold text-primary mb-4">
+                  <AppTitle as="h3" className="text-2xl text-primary mb-4">
                     {service.title}
-                  </h3>
+                  </AppTitle>
                   <p className="text-gray-700 leading-relaxed">
                     {service.description}
                   </p>
@@ -265,7 +269,9 @@ function App() {
             </div>
 
             <div>
-              <h3 className="text-lg font-bold mb-4">Quick Links</h3>
+              <AppTitle as="h3" className="text-lg mb-4">
+                Quick Links
+              </AppTitle>
               <div className="space-y-2">
                 {navLinks
                   .filter((link) => link.id !== "home")
@@ -284,7 +290,9 @@ function App() {
             </div>
 
             <div>
-              <h3 className="text-lg font-bold mb-4">Connect With Us</h3>
+              <AppTitle as="h3" className="text-lg mb-4">
+                Connect With Us
+              </AppTitle>
               <div className="flex space-x-4">
                 {socialLinks.map((social, index) => {
                   const Icon = social.icon;
