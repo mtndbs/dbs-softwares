@@ -34,9 +34,52 @@ import accelerateIcon from "./assets/icons/accelerate-svgrepo-com.svg";
 import computerIcon from "./assets/icons/computer-svgrepo-com.svg";
 import cellPhoneIcon from "./assets/icons/cell-phone-svgrepo-com.svg";
 import { ProjectCard } from "./components/ProjectCard";
+import { useForm, SubmitHandler } from "react-hook-form";
+
+type FormInputs = {
+  name: string;
+  email: string;
+  message: string;
+};
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionStatus, setSubmissionStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FormInputs>();
+
+  const onSubmit: SubmitHandler<FormInputs> = async (data) => {
+    setIsSubmitting(true);
+    try {
+      const response = await fetch("https://formspree.io/f/mreyelna", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        setSubmissionStatus("success");
+        reset();
+      } else {
+        setSubmissionStatus("error");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setSubmissionStatus("error");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const navLinks = [
     { id: "home", label: "Home" },
@@ -306,16 +349,29 @@ function App() {
           </div>
 
           <div className="max-w-2xl mx-auto">
-            <form className="space-y-6">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              action="https://formspree.io/f/mreyelna"
+              method="POST"
+              className="space-y-6"
+            >
               <div>
                 <label className="block text-primary font-semibold mb-2">
                   Name
                 </label>
                 <input
+                  {...register("name", { required: "Name is required" })}
                   type="text"
-                  className="w-full px-4 py-3 border-2 border-primary focus:border-secondary outline-none"
+                  className={`w-full px-4 py-3 border-2 ${
+                    errors.name ? "border-red-500" : "border-primary"
+                  } focus:border-secondary outline-none`}
                   placeholder="Your name"
                 />
+                {errors.name && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.name.message}
+                  </p>
+                )}
               </div>
 
               <div>
@@ -323,10 +379,24 @@ function App() {
                   Email
                 </label>
                 <input
+                  {...register("email", {
+                    required: "Email is required",
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: "Invalid email address",
+                    },
+                  })}
                   type="email"
-                  className="w-full px-4 py-3 border-2 border-primary focus:border-secondary outline-none"
+                  className={`w-full px-4 py-3 border-2 ${
+                    errors.email ? "border-red-500" : "border-primary"
+                  } focus:border-secondary outline-none`}
                   placeholder="your@email.com"
                 />
+                {errors.email && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.email.message}
+                  </p>
+                )}
               </div>
 
               <div>
@@ -334,18 +404,27 @@ function App() {
                   Message
                 </label>
                 <textarea
+                  {...register("message", { required: "Message is required" })}
                   rows={6}
-                  className="w-full px-4 py-3 border-2 border-primary focus:border-secondary outline-none resize-none"
+                  className={`w-full px-4 py-3 border-2 ${
+                    errors.message ? "border-red-500" : "border-primary"
+                  } focus:border-secondary outline-none resize-none`}
                   placeholder="Tell us about your project..."
                 ></textarea>
+                {errors.message && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.message.message}
+                  </p>
+                )}
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4 pt-2">
                 <button
                   type="submit"
-                  className="w-full sm:w-1/2 px-8 py-4 bg-secondary text-white font-bold hover:bg-opacity-90 transition-all border-2 border-secondary"
+                  disabled={isSubmitting}
+                  className="w-full sm:w-1/2 px-8 py-4 bg-secondary text-white font-bold hover:bg-opacity-90 transition-all border-2 border-secondary disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Send Message
+                  {isSubmitting ? "Sending..." : "Send Message"}
                 </button>
                 <a
                   href="https://wa.me/972585875652"
@@ -357,6 +436,17 @@ function App() {
                   WhatsApp Us
                 </a>
               </div>
+              {submissionStatus === "success" && (
+                <div className="p-4 bg-green-100 text-green-700 border border-green-400 rounded">
+                  Message sent successfully! We'll get back to you soon.
+                </div>
+              )}
+              {submissionStatus === "error" && (
+                <div className="p-4 bg-red-100 text-red-700 border border-red-400 rounded">
+                  Something went wrong. Please try again or contact us via
+                  WhatsApp.
+                </div>
+              )}
             </form>
           </div>
         </div>
