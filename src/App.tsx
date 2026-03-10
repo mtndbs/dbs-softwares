@@ -77,10 +77,13 @@ function App() {
         setMobileMenuOpen={setMobileMenuOpen}
         scrollToSection={scrollToSection}
       />
-      <section id="home" className=" md:h-[60dvh] flex  bg-primary">
+      <section
+        id="home"
+        className=" md:h-[60%] border-red-500  flex  bg-primary"
+      >
         {/* <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border"> */}
         <div className="">
-          <div className="grid md:grid-cols-2 gap-12 items-center  md:h-[60dvh]   ">
+          <div className="grid md:grid-cols-2 gap-12 items-center  md:h-[60%]">
             <div className="md:px-20 px-8 py-24 ">
               <AppTitle
                 as="h1"
