@@ -3,20 +3,24 @@ import { AppTitle } from "./AppTitle";
 
 interface SectionHeaderProps {
   title: string;
-  className?: string; // For text/line customization via tailwind classes if needed, but props are cleaner
+  className?: string;
   textColor?: string;
 }
 
 export function SectionHeader({
   title,
-  textColor = "text-primary",
+  className = "",
+  textColor = "text-brand-gradient",
 }: SectionHeaderProps) {
   return (
     <div className="text-center mb-16">
-      <AppTitle as="h2" className={`text-4xl ${textColor} mb-4`}>
+      <AppTitle
+        as="h2"
+        className={`text-4xl md:text-5xl ${textColor} ${className} mb-4`}
+      >
         {title}
       </AppTitle>
-      <div className="w-24 h-1 bg-secondary mx-auto"></div>
+      <div className="w-24 h-1 bg-gradient-to-r from-primary to-secondary mx-auto"></div>
     </div>
   );
 }

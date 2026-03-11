@@ -9,12 +9,14 @@ type Props = {
 
 export default function Footer({ scrollToSection }: Props) {
   return (
-    <footer className="bg-primary text-white py-12 border-t-4 border-secondary">
+    <footer className="bg-brand-gradient text-white py-12 border-t-4 border-secondary">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
           <div>
             <div className="flex items-center mb-4">
-              <span className="ml-2 text-xl font-bold">DBS softwares</span>
+              <span className="ml-2 text-xl font-bold text-brand-gradient-light">
+                DBS softwares
+              </span>
             </div>
             <p className="text-gray-300">
               Building the future, one line of code at a time.

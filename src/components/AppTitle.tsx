@@ -13,7 +13,7 @@ export function AppTitle({
   ...props
 }: AppTitleProps) {
   return (
-    <Component className={`font-bold ${className}`} {...props}>
+    <Component className={`font-bold tracking-tight ${className}`} {...props}>
       {children}
     </Component>
   );

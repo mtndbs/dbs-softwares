@@ -22,7 +22,7 @@ export function AppButton({
   switch (variant) {
     case "primary":
       variantStyles =
-        "bg-secondary text-white font-semibold hover:bg-opacity-90 border-2 border-secondary disabled:opacity-50 disabled:cursor-not-allowed";
+        "bg-gradient-to-r from-secondary to-primary text-white font-semibold border-2 border-secondary shadow-[0_12px_30px_rgba(19,61,99,0.18)] hover:brightness-105 disabled:opacity-50 disabled:cursor-not-allowed";
       break;
     case "outline":
       variantStyles =
