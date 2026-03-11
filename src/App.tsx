@@ -142,20 +142,26 @@ function App() {
         data-header-theme="light"
         className="w-full surface-brand border-b-4 border-b-secondary overflow-hidden py-6"
       >
-        <div className="flex whitespace-nowrap animate-marquee-mobile md:animate-marquee">
+        <div className="marquee whitespace-nowrap">
           {[...Array(2)].map((_, i) => (
             <div
               key={i}
-              className="flex flex-shrink-0 items-center gap-12 px-6"
+              aria-hidden={i === 1}
+              className="marquee__group"
             >
               {techStack.map((tech, index) => {
                 const Icon = tech.icon;
                 return (
-                  <div key={index} className="flex items-center gap-3">
+                  <div
+                    key={`${tech.name || "icon"}-${index}-${i}`}
+                    className="marquee__item"
+                  >
                     <Icon className={`text-4xl ${tech.color}`} />
-                    <span className="text-xl font-bold text-primary">
-                      {tech.name}
-                    </span>
+                    {tech.name ? (
+                      <span className="text-xl font-bold text-primary">
+                        {tech.name}
+                      </span>
+                    ) : null}
                   </div>
                 );
               })}
