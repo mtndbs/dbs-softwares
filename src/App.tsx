@@ -1,6 +1,7 @@
 import { FaWhatsapp } from "react-icons/fa6";
 import { useState } from "react";
 import logo from "./assets/logo.webp";
+import heroVideo from "./assets/video/dbs_video4.mp4";
 import { ProjectCard } from "./components/ProjectCard";
 import { AppButton } from "./components/AppButton";
 import { SectionHeader } from "./components/SectionHeader";
@@ -115,11 +116,23 @@ function App() {
               data-header-theme="light"
               className="bg-white flex flex-col justify-center items-center h-full border-t-8 max-sm:border-t-secondary md:border-l-8 md:border-l-secondary"
             >
-              <img
-                src={logo}
-                alt="App Logo"
-                className="w-full  md:w-auto mx-auto  object-contain"
-              />
+              <video
+                className="w-full md:w-auto mx-auto object-contain"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+                poster={logo}
+                aria-label="DBS showcase video"
+              >
+                <source src={heroVideo} type="video/mp4" />
+                <img
+                  src={logo}
+                  alt="App Logo"
+                  className="w-full md:w-auto mx-auto object-contain"
+                />
+              </video>
             </div>
           </div>
         </div>
@@ -218,7 +231,7 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader title="Get In Touch" />
 
-          <div className="max-w-2xl mx-auto surface-brand border-4 border-primary p-8 md:p-10 shadow-[0_18px_40px_rgba(19,61,99,0.12)]">
+          <div className="max-w-2xl mx-auto surface-brand border-2 border-primary p-8 md:p-10 shadow-[0_18px_40px_rgba(19,61,99,0.12)]">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <AppInput
                 label="Name"
